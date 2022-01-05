@@ -20,6 +20,10 @@
 /* fonts */
 
 /* styles */
+html {
+    scroll-behavior: smooth;
+}
+
 *,
 *::before,
 *::after {
@@ -84,4 +88,77 @@ body {
     padding: 0 20px;
 }
 
+/* header */
+.header-container {
+    display: flex;
+    background: url('./assets/img/image-bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center 0;
+}
+
+.logo {
+    width: 50px;
+    background-image: url(./assets/svg/logo.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0 25px;
+    transition: 0.3s;
+}
+
+.logo:hover {
+    filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%) contrast(87%);
+}
+
+.nav {
+    padding-top: 20px;
+    margin-left: auto
+}
+
+.nav-list {
+    display: flex;
+    gap: 30px;
+    font-family: Inter;
+    font-size: 20px;
+    line-height: 50px;
+    color: #FFFFFF;
+}
+
+.nav-list-item:last-child {
+    margin-right: 31px;
+}
+
+.nav-list-item a:hover {
+    color: #BDAE82;
+}
+
+.languages {
+    display: inline-block;
+    padding: 20px 0;
+    font-family: Inter;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 50px;
+    color: #FFFFFF;
+}
+
+.languages-eng:hover,
+.languages-ru:hover {
+    color: #BDAE82;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.languages span:nth-child(1) {
+    margin-right: 9px;
+}
+
+.languages span:nth-child(2) {
+    margin-right: 8px;
+}
+
+.language-active {
+    color: #BDAE82;
+}
+
+/* header */
 /* styles */
