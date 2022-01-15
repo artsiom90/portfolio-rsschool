@@ -65,13 +65,11 @@ h6 {
 
 input {
     border: none;
-    outline: none;
 }
 
 textarea {
     border: none;
     resize: none;
-    outline: none;
 }
 
 body {
@@ -482,6 +480,7 @@ body {
     font-size: 20px;
     line-height: 40px;
     padding-left: 18px;
+    outline-color: #BDAE82;
     color: #BDAE82;
 }
 
@@ -495,6 +494,7 @@ body {
     font-size: 20px;
     line-height: 40px;
     padding: 3px 0 0 18px;
+    outline-color: #BDAE82;
     color: #BDAE82;
 }
 
@@ -535,6 +535,7 @@ body {
     font-size: 20px;
     line-height: 50px;
     color: #FFFFFF;
+    margin-left: 12px;
 }
 
 .footer-rsshool a:hover {
