@@ -1,3 +1,5 @@
+import i18Obj from './translate.js'
+
 // menu
 const burgerMenuButton = document.querySelector('.burger-menu')
 const closeMenuButton = document.querySelector('.nav-close-menu')
@@ -56,3 +58,33 @@ const changeImages = e => {
 }
 
 portfolioBtns.forEach(btn => btn.addEventListener('click', changeImages))
+
+//translation
+const languagesBtns = document.querySelectorAll('.languages')
+const languagesBtn = document.querySelectorAll('.language')
+const contactEmail = document.querySelector('.contacts-email')
+const contactPhone = document.querySelector('.contacts-phone')
+const contactMessage = document.querySelector('.contacts-message')
+
+const getTranslate = (e, obj) => {
+    languagesBtn.forEach(btn => {
+        if (btn.classList.contains('language-active')) {
+            btn.classList.remove('language-active')
+        }
+    })
+    if (e.target.classList.contains('languages-eng')) {
+        document.querySelectorAll('[data-i18n]').forEach(node => node.textContent = obj.en[node.dataset.i18n])
+        e.target.classList.add('language-active')
+        contactEmail.placeholder = 'E-mail'
+        contactPhone.placeholder = 'Phone'
+        contactMessage.placeholder = 'Message'
+    } else {
+        document.querySelectorAll('[data-i18n]').forEach(node => node.textContent = obj.ru[node.dataset.i18n])
+        e.target.classList.add('language-active')
+        contactEmail.placeholder = 'Электронная почта'
+        contactPhone.placeholder = 'Телефон'
+        contactMessage.placeholder = 'Оставить сообщение'
+    }
+}
+
+languagesBtns.forEach(btn => btn.addEventListener('click', e => getTranslate(e, i18Obj)))
