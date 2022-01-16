@@ -255,6 +255,12 @@ body {
     margin-right: 31px;
 }
 
+@media (max-width: 619px) {
+    .nav-list-item:last-child {
+        margin-right: 0;
+    }
+}
+
 .nav-list-item a:hover {
     color: #BDAE82;
 }
