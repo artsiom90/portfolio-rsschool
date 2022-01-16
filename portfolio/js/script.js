@@ -65,6 +65,10 @@ const languagesBtn = document.querySelectorAll('.language')
 const contactEmail = document.querySelector('.contacts-email')
 const contactPhone = document.querySelector('.contacts-phone')
 const contactMessage = document.querySelector('.contacts-message')
+const skillsTitle = document.querySelector('.skills-title')
+const portfolioTitle = document.querySelector('.portfolio-title')
+const videoTitle = document.querySelector('.video-title')
+const priceTitle = document.querySelector('.price-title')
 
 const getTranslate = (e, obj) => {
     languagesBtn.forEach(btn => {
@@ -78,12 +82,20 @@ const getTranslate = (e, obj) => {
         contactEmail.placeholder = 'E-mail'
         contactPhone.placeholder = 'Phone'
         contactMessage.placeholder = 'Message'
+        skillsTitle.classList.remove('skills-title-translate')
+        portfolioTitle.classList.remove('portfolio-title-translate')
+        videoTitle.classList.remove('video-title-translate')
+        priceTitle.classList.remove('price-title-translate')
     } else {
         document.querySelectorAll('[data-i18n]').forEach(node => node.textContent = obj.ru[node.dataset.i18n])
         e.target.classList.add('language-active')
         contactEmail.placeholder = 'Электронная почта'
         contactPhone.placeholder = 'Телефон'
         contactMessage.placeholder = 'Оставить сообщение'
+        skillsTitle.classList.add('skills-title-translate')
+        portfolioTitle.classList.add('portfolio-title-translate')
+        videoTitle.classList.add('video-title-translate')
+        priceTitle.classList.add('price-title-translate')
     }
 }
 

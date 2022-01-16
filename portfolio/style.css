@@ -255,6 +255,12 @@ body {
     margin-right: 31px;
 }
 
+@media (max-width: 619px) {
+    .nav-list-item:last-child {
+        margin-right: 0;
+    }
+}
+
 .nav-list-item a:hover {
     color: #BDAE82;
 }
@@ -457,10 +463,18 @@ body {
     width: 152px;
 }
 
+.skills-title-translate {
+    width: 220px;
+}
+
 @media (max-width: 768px) {
     .skills-title {
         width: 131px;
         font-size: 32px;
+    }
+
+    .skills-title-translate {
+        width: 190px;
     }
 }
 
@@ -590,11 +604,19 @@ body {
     width: 221px;
 }
 
+.portfolio-title-translate {
+    width: 295px;
+}
+
 @media (max-width: 768px) {
     .portfolio-title {
         width: 185px;
         font-size: 32px;
         line-height: 80px;
+    }
+
+    .portfolio-title-translate {
+        width: 245px;
     }
 }
 
@@ -643,11 +665,19 @@ body {
     width: 154px;
 }
 
+.video-title-translate {
+    width: 170px;
+}
+
 @media (max-width: 768px) {
     .video-title {
         width: 131px;
         font-size: 32px;
         line-height: 80px;
+    }
+
+    .video-title-translate {
+        width: 150px;
     }
 }
 
@@ -722,11 +752,19 @@ body {
     width: 142px;
 }
 
+.price-title-translate {
+    width: 154px;
+}
+
 @media (max-width: 768px) {
     .price-title {
         width: 122px;
         font-size: 32px;
         line-height: 80px;
+    }
+
+    .price-title-translate {
+        width: 143px;
     }
 }
 
