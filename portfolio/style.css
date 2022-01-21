@@ -1,12 +1,10 @@
 /* variables */
 :root {
-    --text-color-button-transparent: #BDAE82;
-    --text-color-title: #BDAE82;
-    --text-color-theme: #BDAE82;
-    --text-color-button-gold: #FFFFFF;
-    --background-color-button: transparent;
+    --BDAE82-1C1C1C: #BDAE82;
+    --BDAE82-FFFFFF: #BDAE82;
+    --FFFFFF-BDAE82: #FFFFFF;
+    --transparent-BDAE82: transparent;
     --background-color-theme: #000000;
-    --font-color-theme: #BDAE82;
     --background-color-form: rgba(0, 0, 0, 0.5);
 }
 
@@ -123,12 +121,12 @@ body {
 }
 
 .button-gold:hover {
-    background-color: var(--text-color-title);
-    color: var(--text-color-button-gold);
+    background-color: var(--BDAE82-1C1C1C);
+    color: var(--FFFFFF-BDAE82);
 }
 
 .button-light {
-    background-color: var(--text-color-theme);
+    background-color: var(--BDAE82-FFFFFF);
 }
 
 .button-active-light {
@@ -138,14 +136,14 @@ body {
 }
 
 .button-active-light:hover {
-    background-color: var(--font-color-theme);
-    color: var(--text-color-theme);
+    background-color: var(--BDAE82-1C1C1C);
+    color: var(--BDAE82-FFFFFF);
 }
 
 .button-transparent {
-    background-color: var(--background-color-button);
+    background-color: var(--transparent-BDAE82);
     border: 2px solid #BDAE82;
-    color: var(--text-color-button-transparent);
+    color: var(--BDAE82-1C1C1C);
     transition: 0.3s;
 }
 
@@ -180,7 +178,7 @@ body {
     font-weight: bold;
     font-size: 40px;
     line-height: 80px;
-    color: var(--text-color-title);
+    color: var(--BDAE82-1C1C1C);
     background-color: var(--background-color-theme);
 }
 
@@ -236,7 +234,7 @@ body {
 
 .nav {
     padding-top: 20px;
-    margin-left: auto
+    margin-left: auto;
 }
 
 @media (max-width: 768px) {
@@ -246,7 +244,7 @@ body {
         height: 1024px;
         top: 0;
         right: 0;
-        color: var(--font-color-theme);
+        color: var(--BDAE82-1C1C1C);
         background: var(--background-color-theme);
         z-index: 1;
         transform: translateX(100%);
@@ -301,7 +299,7 @@ body {
 }
 
 .nav-list-item a:hover {
-    color: #BDAE82;
+    color: var(--BDAE82-FFFFFF);
 }
 
 @media (max-width: 768px) {
@@ -353,7 +351,7 @@ body {
 
 .languages-eng:hover,
 .languages-ru:hover {
-    color: var(--text-color-theme);
+    color: var(--BDAE82-FFFFFF);
     cursor: pointer;
     transition: 0.3s;
 }
@@ -405,7 +403,7 @@ body {
 }
 
 .language-active {
-    color: var(--text-color-theme);
+    color: var(--BDAE82-FFFFFF);
 }
 
 .theme-button {
@@ -957,7 +955,7 @@ body {
     font-weight: bold;
     font-size: 40px;
     line-height: 80px;
-    color: var(--text-color-title);
+    color: var(--BDAE82-1C1C1C);
 }
 
 @media (max-width: 768px) {
@@ -1010,7 +1008,7 @@ body {
     font-family: Inter;
     line-height: 40px;
     font-size: 20px;
-    color: var(--text-color-title);
+    color: var(--BDAE82-1C1C1C);
 }
 
 /* contacts */

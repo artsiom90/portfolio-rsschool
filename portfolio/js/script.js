@@ -67,36 +67,45 @@ const portfolioTitle = document.querySelector('.portfolio-title')
 const videoTitle = document.querySelector('.video-title')
 const priceTitle = document.querySelector('.price-title')
 
-const getTranslate = (e, obj) => {
+
+const translateToEng = obj => {
+    lang = 'en'
+    document.querySelectorAll('[data-i18n]').forEach(node => node.textContent = obj.en[node.dataset.i18n])
+    document.querySelector('.languages-eng').classList.add('language-active')
+    document.querySelector('.languages-ru').classList.remove('language-active')
+    contactEmail.placeholder = 'E-mail'
+    contactPhone.placeholder = 'Phone'
+    contactMessage.placeholder = 'Message'
+    skillsTitle.classList.remove('skills-title-translate')
+    portfolioTitle.classList.remove('portfolio-title-translate')
+    videoTitle.classList.remove('video-title-translate')
+    priceTitle.classList.remove('price-title-translate')
+}
+
+const translateToRu = obj => {
+    lang = 'ru'
+    document.querySelectorAll('[data-i18n]').forEach(node => node.textContent = obj.ru[node.dataset.i18n])
+    document.querySelector('.languages-ru').classList.add('language-active')
+    document.querySelector('.languages-eng').classList.remove('language-active')
+    contactEmail.placeholder = 'Электронная почта'
+    contactPhone.placeholder = 'Телефон'
+    contactMessage.placeholder = 'Оставить сообщение'
+    skillsTitle.classList.add('skills-title-translate')
+    portfolioTitle.classList.add('portfolio-title-translate')
+    videoTitle.classList.add('video-title-translate')
+    priceTitle.classList.add('price-title-translate')
+}
+
+const getTranslate = e => {
     languagesBtn.forEach(btn => {
         if (btn.classList.contains('language-active')) {
             btn.classList.remove('language-active')
         }
     })
-    if (e.target.classList.contains('languages-eng')) {
-        document.querySelectorAll('[data-i18n]').forEach(node => node.textContent = obj.en[node.dataset.i18n])
-        e.target.classList.add('language-active')
-        contactEmail.placeholder = 'E-mail'
-        contactPhone.placeholder = 'Phone'
-        contactMessage.placeholder = 'Message'
-        skillsTitle.classList.remove('skills-title-translate')
-        portfolioTitle.classList.remove('portfolio-title-translate')
-        videoTitle.classList.remove('video-title-translate')
-        priceTitle.classList.remove('price-title-translate')
-    } else {
-        document.querySelectorAll('[data-i18n]').forEach(node => node.textContent = obj.ru[node.dataset.i18n])
-        e.target.classList.add('language-active')
-        contactEmail.placeholder = 'Электронная почта'
-        contactPhone.placeholder = 'Телефон'
-        contactMessage.placeholder = 'Оставить сообщение'
-        skillsTitle.classList.add('skills-title-translate')
-        portfolioTitle.classList.add('portfolio-title-translate')
-        videoTitle.classList.add('video-title-translate')
-        priceTitle.classList.add('price-title-translate')
-    }
+    e.target.classList.contains('languages-eng') ? translateToEng(i18Obj) : translateToRu(i18Obj)
 }
 
-languagesBtns.forEach(btn => btn.addEventListener('click', e => getTranslate(e, i18Obj)))
+languagesBtns.forEach(btn => btn.addEventListener('click', e => getTranslate(e)))
 
 // theme
 const logo = document.querySelector('.logo')
@@ -164,41 +173,74 @@ const changeStylesLightTheme = () => {
 }
 
 const setPropertyDarkTheme = () => {
-    document.documentElement.style.setProperty('--background-color-button', 'transparent')
-    document.documentElement.style.setProperty('--text-color-button-transparent', '#BDAE82')
+    document.documentElement.style.setProperty('--transparent-BDAE82', 'transparent')
+    document.documentElement.style.setProperty('--BDAE82-1C1C1C', '#BDAE82')
     document.documentElement.style.setProperty('--background-color-theme', '#000000')
-    document.documentElement.style.setProperty('--font-color-theme', '#FFFFFF')
-    document.documentElement.style.setProperty('--text-color-title', '#BDAE82')
-    document.documentElement.style.setProperty('--text-color-theme', '#BDAE82')
-    document.documentElement.style.setProperty('--text-color-button-gold', '#FFFFFF')
+    document.documentElement.style.setProperty('--BDAE82-1C1C1C', '#FFFFFF')
+    document.documentElement.style.setProperty('--BDAE82-1C1C1C', '#BDAE82')
+    document.documentElement.style.setProperty('--BDAE82-FFFFFF', '#BDAE82')
+    document.documentElement.style.setProperty('--FFFFFF-BDAE82', '#FFFFFF')
     document.documentElement.style.setProperty('--background-color-form', 'rgba(0, 0, 0, 0.5)')
 }
 
 const setPropertyLightTheme = () => {
-    document.documentElement.style.setProperty('--background-color-button', '#BDAE82')
-    document.documentElement.style.setProperty('--text-color-button-transparent', '#1C1C1C')
+    document.documentElement.style.setProperty('--transparent-BDAE82', '#BDAE82')
+    document.documentElement.style.setProperty('--BDAE82-1C1C1C', '#1C1C1C')
     document.documentElement.style.setProperty('--background-color-theme', '#FFFFFF')
-    document.documentElement.style.setProperty('--font-color-theme', '#1C1C1C')
-    document.documentElement.style.setProperty('--text-color-title', '#1C1C1C')
-    document.documentElement.style.setProperty('--text-color-theme', '#FFFFFF')
-    document.documentElement.style.setProperty('--text-color-button-gold', '#BDAE82')
+    document.documentElement.style.setProperty('--BDAE82-1C1C1C', '#1C1C1C')
+    document.documentElement.style.setProperty('--BDAE82-1C1C1C', '#1C1C1C')
+    document.documentElement.style.setProperty('--BDAE82-FFFFFF', '#FFFFFF')
+    document.documentElement.style.setProperty('--FFFFFF-BDAE82', '#BDAE82')
     document.documentElement.style.setProperty('--background-color-form', 'rgba(255, 255, 255, 0.5)')
 }
 
+const changeThemeDark = () => {
+    theme = 'dark'
+    themeBtn.classList.remove('theme-light')
+    changeBackgroundSvgDarkTheme()
+    setPropertyDarkTheme()
+    changeContainerBackgroundImgDarkTheme()
+    changeStylesDarkTheme()
+}
+const changeThemeLight = () => {
+    theme = 'light'
+    themeBtn.classList.add('theme-light')
+    changeBackgroundSvgLightTheme()
+    setPropertyLightTheme()
+    changeContainerBackgroundImgLightTheme()
+    changeStylesLightTheme()
+}
+
 const changeTheme = () => {
-    if (themeBtn.classList.contains('theme-light')) {
-        themeBtn.classList.remove('theme-light')
-        changeBackgroundSvgDarkTheme()
-        setPropertyDarkTheme()
-        changeContainerBackgroundImgDarkTheme()
-        changeStylesDarkTheme()
-    } else {
-        themeBtn.classList.add('theme-light')
-        changeBackgroundSvgLightTheme()
-        setPropertyLightTheme()
-        changeContainerBackgroundImgLightTheme()
-        changeStylesLightTheme()
-    }
+    themeBtn.classList.contains('theme-light') ? changeThemeDark() : changeThemeLight()
 }
 
 themeBtn.addEventListener('click', changeTheme)
+
+//storage
+let lang = 'en'
+let theme = 'dark'
+
+const setLocalStorage = () => {
+    localStorage.setItem('lang', lang)
+    localStorage.setItem('theme', theme)
+}
+
+window.addEventListener('beforeunload', setLocalStorage)
+
+const getLocalStorage = () => {
+    if (localStorage.getItem('lang') && localStorage.getItem('lang') === 'en') {
+        translateToEng(i18Obj)
+    }
+    if (localStorage.getItem('lang') && localStorage.getItem('lang') === 'ru') {
+        translateToRu(i18Obj)
+    }
+    if (localStorage.getItem('theme') && localStorage.getItem('theme') === 'dark') {
+        changeThemeDark()
+    }
+    if (localStorage.getItem('theme') && localStorage.getItem('theme') === 'light') {
+        changeThemeLight()
+    }
+}
+
+window.addEventListener('load', getLocalStorage)
