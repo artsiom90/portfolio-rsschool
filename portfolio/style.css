@@ -244,7 +244,7 @@ body {
         height: 1024px;
         top: 0;
         right: 0;
-        color: var(--BDAE82-1C1C1C);
+        color: var(--FFFFFF-1C1C1C);
         background: var(--background-color-theme);
         z-index: 1;
         transform: translateX(100%);
@@ -279,7 +279,6 @@ body {
         font-size: 35px;
         line-height: 73px;
     }
-
 }
 
 @media (max-width: 619px) {
@@ -299,8 +298,8 @@ body {
     }
 }
 
-.nav-list-item a:hover {
-    color: var(--BDAE82-FFFFFF);
+.nav-list-link:hover {
+    color: #BDAE82;
 }
 
 @media (max-width: 768px) {
