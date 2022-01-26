@@ -244,3 +244,90 @@ const getLocalStorage = () => {
 }
 
 window.addEventListener('load', getLocalStorage)
+
+// video player
+
+const video = document.querySelector('.video-file')
+const play = document.querySelector('.button-play')
+const controlPlay = document.querySelector('.video-player-button')
+const controlProgress = document.querySelector('.video-player-progress')
+const controlVolume = document.querySelector('.video-player-button-volume')
+const controlVolumeProgress = document.querySelector('.video-player-volume')
+
+let playVideo = false
+
+play.addEventListener('click', () => {
+    playVideo = true
+    video.play()
+    play.style.display = 'none'
+    controlPlay.style.backgroundImage = "url('./assets/svg/pause.svg')"
+    controlProgress.max = Math.floor(video.duration)
+})
+
+video.addEventListener('click', () => {
+    playVideo = false
+    video.pause()
+    play.style.display = ''
+    controlPlay.style.backgroundImage = "url('./assets/svg/play.svg')"
+})
+
+controlPlay.addEventListener('click', () => {
+    if (!playVideo) {
+        playVideo = true
+        video.play()
+        play.style.display = 'none'
+        controlPlay.style.backgroundImage = "url('./assets/svg/pause.svg')"
+        controlProgress.max = Math.floor(video.duration)
+    } else {
+        playVideo = false
+        video.pause()
+        play.style.display = ''
+        controlPlay.style.backgroundImage = "url('./assets/svg/play.svg')"
+    }
+})
+
+controlProgress.addEventListener('input', e => {
+    controlProgress.value = e.target.value
+    video.currentTime = controlProgress.value
+    let videoInputValue = (controlProgress.value - controlProgress.min) / (controlProgress.max - controlProgress.min) * 100
+    controlProgress.style.background = `linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${videoInputValue}%, rgb(200, 200, 200) ${videoInputValue}%, rgb(200, 200, 200) 100%)`
+})
+
+video.addEventListener('timeupdate', () => {
+    controlProgress.value = Math.floor(video.currentTime)
+    let videoInputValue = (controlProgress.value - controlProgress.min) / (controlProgress.max - controlProgress.min) * 100
+    controlProgress.style.background = `linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${videoInputValue}%, rgb(200, 200, 200) ${videoInputValue}%, rgb(200, 200, 200) 100%)`
+})
+
+let volumeValue = controlVolumeProgress.value
+let mute = false
+let volumeInputValue = (controlVolumeProgress.value - controlVolumeProgress.min) / (controlVolumeProgress.max - controlVolumeProgress.min) * 100
+
+
+controlVolume.addEventListener('click', () => {
+    if (!mute) {
+        mute = true
+        controlVolumeProgress.value = 0
+        controlVolume.style.backgroundImage = "url('./assets/svg/mute.svg')"
+        video.volume = 0
+        controlVolumeProgress.style.background = `linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) 0%, rgb(200, 200, 200) 0%, rgb(200, 200, 200) 100%)`
+    } else {
+        mute = false
+        controlVolumeProgress.value = volumeValue
+        controlVolume.style.backgroundImage = "url('./assets/svg/volume.svg')"
+        video.volume = volumeValue
+        controlVolumeProgress.style.background = `linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${volumeInputValue}%, rgb(200, 200, 200) ${volumeInputValue}%, rgb(200, 200, 200) 100%)`
+    }
+})
+
+controlVolumeProgress.addEventListener('input', () => {
+    volumeValue = controlVolumeProgress.value
+    video.volume = controlVolumeProgress.value
+    let volumeInputValue = (controlVolumeProgress.value - controlVolumeProgress.min) / (controlVolumeProgress.max - controlVolumeProgress.min) * 100
+    controlVolumeProgress.style.background = `linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${volumeInputValue}%, rgb(200, 200, 200) ${volumeInputValue}%, rgb(200, 200, 200) 100%)`
+    if (video.volume === 0) {
+        controlVolume.style.backgroundImage = "url('./assets/svg/mute.svg')"
+    } else {
+        controlVolume.style.backgroundImage = "url('./assets/svg/volume.svg')"
+    }
+})

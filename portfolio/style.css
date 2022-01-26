@@ -825,13 +825,20 @@ body {
 
 .video-player-controls {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     position: absolute;
     height: 50px;
     width: 100%;
     bottom: 0;
     background-color: #000000;
+}
+
+@media (max-width: 620px) {
+    .video-player-controls {
+        padding: 10px;
+        gap: 10px;
+    }
 }
 
 .video-player-button {
@@ -851,8 +858,7 @@ body {
 
 .video-player-progress {
     width: 60%;
-    background: linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) 0%, rgb(200, 200, 200) 100%, rgb(200, 200, 200) 100%);
-}
+    background: linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) 0%, rgb(200, 200, 200) 0%, rgb(200, 200, 200) 100%);}
 
 .video-player-button-volume {
     width: 40px;
@@ -890,9 +896,7 @@ body {
         border-radius: 50%;
         cursor: ew-resize;
     }
-
 }
-
 
 /* video */
 /* price */
