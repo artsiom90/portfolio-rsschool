@@ -357,12 +357,6 @@ body {
     }
 }
 
-@media (max-width: 480px) {
-    .languages {
-        margin-left: auto;
-    }
-}
-
 .languages-eng:hover,
 .languages-ru:hover {
     color: var(--BDAE82-FFFFFF);
@@ -439,7 +433,7 @@ body {
 
 @media (max-width: 480px) {
     .theme-button {
-        margin-right: 10px;
+        margin-right: 20px;
     }
 }
 
