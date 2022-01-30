@@ -118,28 +118,6 @@ const headerContainer = document.querySelector('.header-container')
 const heroContainer = document.querySelector('.hero-container')
 const contactsConatainer = document.querySelector('.contacts-container')
 
-const changeContainerBackgroundImgDarkTheme = () => {
-    if (document.documentElement.clientWidth <= 768) {
-        headerContainer.style.backgroundImage = "url('./assets/img/image-bg-tablet.jpg')"
-        heroContainer.style.backgroundImage = "url('./assets/img/image-bg-tablet.jpg')"
-    } else if (document.documentElement.clientWidth > 768) {
-        headerContainer.style.backgroundImage = "url('./assets/img/image-bg.jpg')"
-        heroContainer.style.backgroundImage = "url('./assets/img/image-bg.jpg')"
-    }
-    contactsConatainer.style.backgroundImage = "url('./assets/img/contacts-bg.jpg')"
-}
-
-const changeContainerBackgroundImgLightTheme = () => {
-    if (document.documentElement.clientWidth <= 768) {
-        headerContainer.style.backgroundImage = "url('./assets/img/image-bg-tablet-light.jpg')"
-        heroContainer.style.backgroundImage = "url('./assets/img/image-bg-tablet-light.jpg')"
-    } else if (document.documentElement.clientWidth > 768) {
-        headerContainer.style.backgroundImage = "url('./assets/img/image-bg-light.jpg')"
-        heroContainer.style.backgroundImage = "url('./assets/img/image-bg-light.jpg')"
-    }
-    contactsConatainer.style.backgroundImage = "url('./assets/img/contacts-bg-light.jpg')"
-}
-
 const changeBackgroundSvgDarkTheme = () => {
     logo.style.backgroundImage = "url('./assets/svg/logo.svg')"
     themeBtn.style.backgroundImage = "url('./assets/svg/sun.svg')"
@@ -170,6 +148,24 @@ const changeStylesLightTheme = () => {
     buttonWrapper.forEach(item => item.style.backgroundColor = '#BDAE82')
     sectionTitle.forEach(item => item.classList.add('section-title-light'))
     document.body.style.backgroundColor = '#FFFFFF'
+}
+
+const changeContainerBackgroundImgDarkTheme = () => {
+    headerContainer.classList.remove('header-container-light')
+    headerContainer.classList.add('header-container')
+    heroContainer.classList.remove('hero-container-light')
+    heroContainer.classList.add('hero-container')
+    contactsConatainer.classList.remove('contacts-container-light')
+    contactsConatainer.classList.add('contacts-container')
+}
+
+const changeContainerBackgroundImgLightTheme = () => {
+    headerContainer.classList.remove('header-container')
+    headerContainer.classList.add('header-container-light')
+    heroContainer.classList.remove('hero-container')
+    heroContainer.classList.add('hero-container-light')
+    contactsConatainer.classList.remove('contacts-container')
+    contactsConatainer.classList.add('contacts-container-light')
 }
 
 const setPropertyDarkTheme = () => {
