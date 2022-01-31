@@ -798,6 +798,7 @@ body {
     position: absolute;
     width: 130px;
     height: 130px;
+    z-index: 2;
     background-color: transparent;
     background-image: url('./assets/svg/play-button.svg');
     background-position: center;
@@ -815,6 +816,18 @@ body {
 
 .button-play:hover {
     filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%) contrast(87%);
+}
+
+.video-poster {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background-image: url('./assets/img/video-player-preview.jpg');
+    cursor: pointer;
+    transition: 1s opacity linear;
 }
 
 .video-file {
@@ -857,7 +870,8 @@ body {
 
 .video-player-progress {
     width: 60%;
-    background: linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) 0%, rgb(200, 200, 200) 0%, rgb(200, 200, 200) 100%);}
+    background: linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) 0%, rgb(200, 200, 200) 0%, rgb(200, 200, 200) 100%);
+}
 
 .video-player-button-volume {
     width: 40px;
