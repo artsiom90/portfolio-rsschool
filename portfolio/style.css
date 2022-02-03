@@ -194,9 +194,23 @@ body {
     background-position: center 0;
 }
 
+.header-container-light {
+    display: flex;
+    background: url('./assets/img/image-bg-light.jpg');
+    background-repeat: no-repeat;
+    background-position: center 0;
+}
+
 @media (max-width: 768px) {
     .header-container {
         background: url('./assets/img/image-bg-tablet.jpg');
+        background-position: right 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container-light {
+        background: url('./assets/img/image-bg-tablet-light.jpg');
         background-position: right 0;
     }
 }
@@ -343,12 +357,6 @@ body {
     }
 }
 
-@media (max-width: 480px) {
-    .languages {
-        margin-left: auto;
-    }
-}
-
 .languages-eng:hover,
 .languages-ru:hover {
     color: var(--BDAE82-FFFFFF);
@@ -425,7 +433,7 @@ body {
 
 @media (max-width: 480px) {
     .theme-button {
-        margin-right: 10px;
+        margin-right: 20px;
     }
 }
 
@@ -466,11 +474,28 @@ body {
     background-repeat: no-repeat;
 }
 
+.hero-container-light {
+    min-height: 820px;
+    padding-top: 160px;
+    background-image: url('./assets/img/image-bg-light.jpg');
+    background-position: center -90px;
+    background-repeat: no-repeat;
+}
+
 @media (max-width: 768px) {
     .hero-container {
         min-height: 500px;
         padding-top: 78px;
         background-image: url('./assets/img/image-bg-tablet.jpg');
+        background-position: right -90px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-container-light {
+        min-height: 500px;
+        padding-top: 78px;
+        background-image: url('./assets/img/image-bg-tablet-light.jpg');
         background-position: right -90px;
     }
 }
@@ -1007,6 +1032,15 @@ body {
     justify-content: center;
     height: 700px;
     background-image: url('./assets/img/contacts-bg.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.contacts-container-light {
+    display: flex;
+    justify-content: center;
+    height: 700px;
+    background-image: url('./assets/img/contacts-bg-light.jpg');
     background-position: center center;
     background-repeat: no-repeat;
 }
