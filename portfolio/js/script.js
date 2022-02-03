@@ -10,6 +10,7 @@ burgerMenuButton.addEventListener('click', () => {
     menu.classList.toggle('nav-open')
     document.body.style.overflow = 'hidden'
 })
+
 closeMenuButton.addEventListener('click', () => {
     menu.classList.toggle('nav-open')
     document.body.style.overflow = 'visible'
@@ -37,7 +38,6 @@ const preloadImages = () => {
         }
     })
 }
-
 preloadImages()
 
 const changeImages = e => {
@@ -66,7 +66,6 @@ const skillsTitle = document.querySelector('.skills-title')
 const portfolioTitle = document.querySelector('.portfolio-title')
 const videoTitle = document.querySelector('.video-title')
 const priceTitle = document.querySelector('.price-title')
-
 
 const translateToEng = obj => {
     lang = 'en'
@@ -104,7 +103,6 @@ const getTranslate = e => {
     })
     e.target.classList.contains('languages-eng') ? translateToEng(i18Obj) : translateToRu(i18Obj)
 }
-
 languagesBtns.forEach(btn => btn.addEventListener('click', e => getTranslate(e)))
 
 // theme
@@ -117,6 +115,39 @@ const socialLinks = document.querySelectorAll('.footer-social-link')
 const headerContainer = document.querySelector('.header-container')
 const heroContainer = document.querySelector('.hero-container')
 const contactsConatainer = document.querySelector('.contacts-container')
+
+const preloadContainerImages = () => {
+    const images = ['image-bg', 'image-bg-tablet', 'image-bg-light', 'image-bg-tablet-light']
+    images.forEach(image => {
+        for (let i = 1; i <= 6; i++) {
+            const img = new Image()
+            img.src = `./assets/img/${image}.jpg`
+        }
+    })
+}
+preloadContainerImages()
+
+const changeContainerBackgroundImgDarkTheme = () => {
+    if (document.documentElement.clientWidth <= 768) {
+        headerContainer.style.backgroundImage = "url('./assets/img/image-bg-tablet.jpg')"
+        heroContainer.style.backgroundImage = "url('./assets/img/image-bg-tablet.jpg')"
+    } else if (document.documentElement.clientWidth > 768) {
+        headerContainer.style.backgroundImage = "url('./assets/img/image-bg.jpg')"
+        heroContainer.style.backgroundImage = "url('./assets/img/image-bg.jpg')"
+    }
+    contactsConatainer.style.backgroundImage = "url('./assets/img/contacts-bg.jpg')"
+}
+
+const changeContainerBackgroundImgLightTheme = () => {
+    if (document.documentElement.clientWidth <= 768) {
+        headerContainer.style.backgroundImage = "url('./assets/img/image-bg-tablet-light.jpg')"
+        heroContainer.style.backgroundImage = "url('./assets/img/image-bg-tablet-light.jpg')"
+    } else if (document.documentElement.clientWidth > 768) {
+        headerContainer.style.backgroundImage = "url('./assets/img/image-bg-light.jpg')"
+        heroContainer.style.backgroundImage = "url('./assets/img/image-bg-light.jpg')"
+    }
+    contactsConatainer.style.backgroundImage = "url('./assets/img/contacts-bg-light.jpg')"
+}
 
 const changeBackgroundSvgDarkTheme = () => {
     logo.style.backgroundImage = "url('./assets/svg/logo.svg')"
@@ -207,9 +238,7 @@ const changeThemeLight = () => {
     changeStylesLightTheme()
 }
 
-const changeTheme = () => {
-    themeBtn.classList.contains('theme-light') ? changeThemeDark() : changeThemeLight()
-}
+const changeTheme = () => themeBtn.classList.contains('theme-light') ? changeThemeDark() : changeThemeLight()
 
 themeBtn.addEventListener('click', changeTheme)
 
@@ -240,3 +269,114 @@ const getLocalStorage = () => {
 }
 
 window.addEventListener('load', getLocalStorage)
+
+// video player
+
+const video = document.querySelector('.video-file')
+const playerControls = document.querySelector('.video-player-controls')
+const play = document.querySelector('.button-play')
+const controlPlay = document.querySelector('.video-player-button')
+const controlProgress = document.querySelector('.video-player-progress')
+const controlVolume = document.querySelector('.video-player-button-volume')
+const controlVolumeProgress = document.querySelector('.video-player-volume')
+const videoPoster = document.querySelector('.video-poster')
+
+const playVideo = () => {
+    video.play()
+    video.classList.add('play')
+    play.style.display = 'none'
+    controlPlay.style.backgroundImage = "url('./assets/svg/pause.svg')"
+    videoPoster.style.cssText = 'opacity: 0; pointer-events: none';
+    setTimeout(() => videoPoster.style.cssText = 'opacity: 0; pointer-events: none; display: none', 1000)
+    controlProgress.max = Math.floor(video.duration)
+}
+play.addEventListener('click', playVideo)
+
+videoPoster.onclick = () => playVideo()
+
+const playVideoByScreen = () => {
+    video.play()
+    video.classList.add('play')
+    play.style.display = 'none'
+    controlPlay.style.backgroundImage = "url('./assets/svg/pause.svg')"
+    playerControls.style.display = ''
+}
+
+const pauseVideoByScreen = () => {
+    video.pause()
+    video.classList.remove('play')
+    play.style.display = ''
+    controlPlay.style.backgroundImage = "url('./assets/svg/play.svg')"
+    playerControls.style.display = ''
+}
+video.addEventListener('click', () => !video.classList.contains('play') ? playVideoByScreen() : pauseVideoByScreen())
+
+const playVideoByControlBtn = () => {
+    video.play()
+    video.classList.add('play')
+    play.style.display = 'none'
+    controlPlay.style.backgroundImage = "url('./assets/svg/pause.svg')"
+    controlProgress.max = Math.floor(video.duration)
+}
+const pauseVideoByControlBtn = () => {
+    video.pause()
+    video.classList.remove('play')
+    play.style.display = ''
+    controlPlay.style.backgroundImage = "url('./assets/svg/play.svg')"
+}
+controlPlay.addEventListener('click', () => !video.classList.contains('play') ? playVideoByControlBtn() : pauseVideoByControlBtn())
+
+const changeVideoRangeControl = e => {
+    controlProgress.value = e.target.value
+    video.currentTime = controlProgress.value
+    let videoInputValue = (controlProgress.value - controlProgress.min) / (controlProgress.max - controlProgress.min) * 100
+    controlProgress.style.background = `linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${videoInputValue}%, rgb(200, 200, 200) ${videoInputValue}%, rgb(200, 200, 200) 100%)`
+}
+controlProgress.addEventListener('input', e => changeVideoRangeControl(e))
+
+const timeProgressVideoControl = () => {
+    controlProgress.value = Math.floor(video.currentTime)
+    let videoInputValue = (controlProgress.value - controlProgress.min) / (controlProgress.max - controlProgress.min) * 100
+    controlProgress.style.background = `linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${videoInputValue}%, rgb(200, 200, 200) ${videoInputValue}%, rgb(200, 200, 200) 100%)`
+}
+video.addEventListener('timeupdate', timeProgressVideoControl)
+
+const endVideoControl = () => {
+    video.classList.remove('play')
+    play.style.display = ''
+    controlPlay.style.backgroundImage = "url('./assets/svg/play.svg')"
+}
+
+video.addEventListener('ended', endVideoControl)
+
+let volumeValue = controlVolumeProgress.value
+let volumeInputValue = (controlVolumeProgress.value - controlVolumeProgress.min) / (controlVolumeProgress.max - controlVolumeProgress.min) * 100
+
+const muteVolumeByBtn = () => {
+    controlVolumeProgress.value = 0
+    controlVolume.classList.add('mute')
+    controlVolume.style.backgroundImage = "url('./assets/svg/mute.svg')"
+    video.volume = 0
+    controlVolumeProgress.style.background = `linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) 0%, rgb(200, 200, 200) 0%, rgb(200, 200, 200) 100%)`
+}
+const unmuteVolumeByBtn = () => {
+    controlVolumeProgress.value = volumeValue
+    controlVolume.classList.remove('mute')
+    controlVolume.style.backgroundImage = "url('./assets/svg/volume.svg')"
+    video.volume = volumeValue
+    controlVolumeProgress.style.background = `linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${volumeInputValue}%, rgb(200, 200, 200) ${volumeInputValue}%, rgb(200, 200, 200) 100%)`
+}
+controlVolume.addEventListener('click', () => !controlVolume.classList.contains('mute') ? muteVolumeByBtn() : unmuteVolumeByBtn())
+
+const changeVolumeRangeControl = () => {
+    volumeValue = controlVolumeProgress.value
+    video.volume = controlVolumeProgress.value
+    let volumeInputValue = (controlVolumeProgress.value - controlVolumeProgress.min) / (controlVolumeProgress.max - controlVolumeProgress.min) * 100
+    controlVolumeProgress.style.background = `linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${volumeInputValue}%, rgb(200, 200, 200) ${volumeInputValue}%, rgb(200, 200, 200) 100%)`
+    if (video.volume === 0) {
+        controlVolume.style.backgroundImage = "url('./assets/svg/mute.svg')"
+    } else {
+        controlVolume.style.backgroundImage = "url('./assets/svg/volume.svg')"
+    }
+}
+controlVolumeProgress.addEventListener('input', changeVolumeRangeControl)
