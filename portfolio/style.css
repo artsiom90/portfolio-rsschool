@@ -790,10 +790,11 @@ body {
 }
 
 .video-player {
+    display: flex;
+    flex-direction: column;
     min-height: auto;
     margin-top: 60px;
     position: relative;
-    display: flex;
     justify-content: center;
     align-items: center;
     border: 2px solid #BDAE82;
@@ -864,7 +865,6 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    position: absolute;
     height: 50px;
     width: 100%;
     bottom: 0;
