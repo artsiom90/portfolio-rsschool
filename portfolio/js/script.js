@@ -181,6 +181,24 @@ const changeStylesLightTheme = () => {
     document.body.style.backgroundColor = '#FFFFFF'
 }
 
+const changeContainerBackgroundImgDarkTheme = () => {
+    headerContainer.classList.remove('header-container-light')
+    headerContainer.classList.add('header-container')
+    heroContainer.classList.remove('hero-container-light')
+    heroContainer.classList.add('hero-container')
+    contactsConatainer.classList.remove('contacts-container-light')
+    contactsConatainer.classList.add('contacts-container')
+}
+
+const changeContainerBackgroundImgLightTheme = () => {
+    headerContainer.classList.remove('header-container')
+    headerContainer.classList.add('header-container-light')
+    heroContainer.classList.remove('hero-container')
+    heroContainer.classList.add('hero-container-light')
+    contactsConatainer.classList.remove('contacts-container')
+    contactsConatainer.classList.add('contacts-container-light')
+}
+
 const setPropertyDarkTheme = () => {
     document.documentElement.style.setProperty('--transparent-BDAE82', 'transparent')
     document.documentElement.style.setProperty('--BDAE82-1C1C1C', '#BDAE82')
