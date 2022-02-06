@@ -327,11 +327,9 @@ const endVideoControl = () => {
     play.style.display = ''
     controlPlay.style.backgroundImage = "url('./assets/svg/play.svg')"
 }
-
 video.addEventListener('ended', endVideoControl)
 
 let volumeValue = controlVolumeProgress.value
-let volumeInputValue = (controlVolumeProgress.value - controlVolumeProgress.min) / (controlVolumeProgress.max - controlVolumeProgress.min) * 100
 
 const muteVolumeByBtn = () => {
     controlVolumeProgress.value = 0
@@ -345,18 +343,19 @@ const unmuteVolumeByBtn = () => {
     controlVolume.classList.remove('mute')
     controlVolume.style.backgroundImage = "url('./assets/svg/volume.svg')"
     video.volume = volumeValue
-    controlVolumeProgress.style.background = `linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${volumeInputValue}%, rgb(200, 200, 200) ${volumeInputValue}%, rgb(200, 200, 200) 100%)`
+    controlVolumeProgress.style.background = `linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${video.volume * 100}%, rgb(200, 200, 200) ${video.volume * 100}%, rgb(200, 200, 200) 100%)`
 }
 controlVolume.addEventListener('click', () => !controlVolume.classList.contains('mute') ? muteVolumeByBtn() : unmuteVolumeByBtn())
 
 const changeVolumeRangeControl = () => {
     volumeValue = controlVolumeProgress.value
     video.volume = controlVolumeProgress.value
-    let volumeInputValue = (controlVolumeProgress.value - controlVolumeProgress.min) / (controlVolumeProgress.max - controlVolumeProgress.min) * 100
-    controlVolumeProgress.style.background = `linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${volumeInputValue}%, rgb(200, 200, 200) ${volumeInputValue}%, rgb(200, 200, 200) 100%)`
+    controlVolumeProgress.style.background = `linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${video.volume * 100}%, rgb(200, 200, 200) ${video.volume * 100}%, rgb(200, 200, 200) 100%)`
     if (video.volume === 0) {
+        controlVolume.classList.add('mute')
         controlVolume.style.backgroundImage = "url('./assets/svg/mute.svg')"
     } else {
+        controlVolume.classList.remove('mute')
         controlVolume.style.backgroundImage = "url('./assets/svg/volume.svg')"
     }
 }
