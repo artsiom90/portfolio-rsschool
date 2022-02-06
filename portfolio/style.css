@@ -852,6 +852,7 @@ body {
     bottom: 0;
     z-index: 1;
     background-image: url('./assets/img/video-player-preview.jpg');
+    background-size: cover;
     cursor: pointer;
     transition: 1s opacity linear;
 }
