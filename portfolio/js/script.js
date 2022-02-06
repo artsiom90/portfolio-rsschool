@@ -53,7 +53,6 @@ const changeImages = e => {
     e.target.classList.remove('button-transparent')
     e.target.classList.add('button-gold')
 }
-
 portfolioBtns.forEach(btn => btn.addEventListener('click', changeImages))
 
 //translation
@@ -66,6 +65,7 @@ const skillsTitle = document.querySelector('.skills-title')
 const portfolioTitle = document.querySelector('.portfolio-title')
 const videoTitle = document.querySelector('.video-title')
 const priceTitle = document.querySelector('.price-title')
+
 
 const translateToEng = obj => {
     lang = 'en'
@@ -127,28 +127,6 @@ const preloadContainerImages = () => {
 }
 preloadContainerImages()
 
-const changeContainerBackgroundImgDarkTheme = () => {
-    if (document.documentElement.clientWidth <= 768) {
-        headerContainer.style.backgroundImage = "url('./assets/img/image-bg-tablet.jpg')"
-        heroContainer.style.backgroundImage = "url('./assets/img/image-bg-tablet.jpg')"
-    } else if (document.documentElement.clientWidth > 768) {
-        headerContainer.style.backgroundImage = "url('./assets/img/image-bg.jpg')"
-        heroContainer.style.backgroundImage = "url('./assets/img/image-bg.jpg')"
-    }
-    contactsConatainer.style.backgroundImage = "url('./assets/img/contacts-bg.jpg')"
-}
-
-const changeContainerBackgroundImgLightTheme = () => {
-    if (document.documentElement.clientWidth <= 768) {
-        headerContainer.style.backgroundImage = "url('./assets/img/image-bg-tablet-light.jpg')"
-        heroContainer.style.backgroundImage = "url('./assets/img/image-bg-tablet-light.jpg')"
-    } else if (document.documentElement.clientWidth > 768) {
-        headerContainer.style.backgroundImage = "url('./assets/img/image-bg-light.jpg')"
-        heroContainer.style.backgroundImage = "url('./assets/img/image-bg-light.jpg')"
-    }
-    contactsConatainer.style.backgroundImage = "url('./assets/img/contacts-bg-light.jpg')"
-}
-
 const changeBackgroundSvgDarkTheme = () => {
     logo.style.backgroundImage = "url('./assets/svg/logo.svg')"
     themeBtn.style.backgroundImage = "url('./assets/svg/sun.svg')"
@@ -181,6 +159,24 @@ const changeStylesLightTheme = () => {
     document.body.style.backgroundColor = '#FFFFFF'
 }
 
+const changeContainerBackgroundImgDarkTheme = () => {
+    headerContainer.classList.remove('header-container-light')
+    headerContainer.classList.add('header-container')
+    heroContainer.classList.remove('hero-container-light')
+    heroContainer.classList.add('hero-container')
+    contactsConatainer.classList.remove('contacts-container-light')
+    contactsConatainer.classList.add('contacts-container')
+}
+
+const changeContainerBackgroundImgLightTheme = () => {
+    headerContainer.classList.remove('header-container')
+    headerContainer.classList.add('header-container-light')
+    heroContainer.classList.remove('hero-container')
+    heroContainer.classList.add('hero-container-light')
+    contactsConatainer.classList.remove('contacts-container')
+    contactsConatainer.classList.add('contacts-container-light')
+}
+
 const setPropertyDarkTheme = () => {
     document.documentElement.style.setProperty('--transparent-BDAE82', 'transparent')
     document.documentElement.style.setProperty('--BDAE82-1C1C1C', '#BDAE82')
@@ -211,6 +207,7 @@ const changeThemeDark = () => {
     changeContainerBackgroundImgDarkTheme()
     changeStylesDarkTheme()
 }
+
 const changeThemeLight = () => {
     theme = 'light'
     themeBtn.classList.add('theme-light')
@@ -221,7 +218,6 @@ const changeThemeLight = () => {
 }
 
 const changeTheme = () => themeBtn.classList.contains('theme-light') ? changeThemeDark() : changeThemeLight()
-
 themeBtn.addEventListener('click', changeTheme)
 
 //storage
@@ -232,7 +228,6 @@ const setLocalStorage = () => {
     localStorage.setItem('lang', lang)
     localStorage.setItem('theme', theme)
 }
-
 window.addEventListener('beforeunload', setLocalStorage)
 
 const getLocalStorage = () => {
@@ -249,7 +244,6 @@ const getLocalStorage = () => {
         changeThemeLight()
     }
 }
-
 window.addEventListener('load', getLocalStorage)
 
 // video player
