@@ -352,8 +352,10 @@ const changeVolumeRangeControl = () => {
     video.volume = controlVolumeProgress.value
     controlVolumeProgress.style.background = `linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${video.volume * 100}%, rgb(200, 200, 200) ${video.volume * 100}%, rgb(200, 200, 200) 100%)`
     if (video.volume === 0) {
+        controlVolume.classList.add('mute')
         controlVolume.style.backgroundImage = "url('./assets/svg/mute.svg')"
     } else {
+        controlVolume.classList.remove('mute')
         controlVolume.style.backgroundImage = "url('./assets/svg/volume.svg')"
     }
 }
