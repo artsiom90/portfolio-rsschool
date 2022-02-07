@@ -255,6 +255,8 @@ const controlProgress = document.querySelector('.video-player-progress')
 const controlVolume = document.querySelector('.video-player-button-volume')
 const controlVolumeProgress = document.querySelector('.video-player-volume')
 const videoPoster = document.querySelector('.video-poster')
+const videoTimeElapsed = document.querySelector('.video-time-elapsed')
+const videoTimeDuration = document.querySelector('.video-time-duration')
 
 const playVideo = () => {
     video.play()
@@ -264,6 +266,7 @@ const playVideo = () => {
     videoPoster.style.cssText = 'opacity: 0; pointer-events: none';
     setTimeout(() => videoPoster.style.cssText = 'opacity: 0; pointer-events: none; display: none', 1000)
     controlProgress.max = Math.floor(video.duration)
+    videoTimeDuration.innerText = `00:${Math.floor(video.duration)}`
 }
 play.addEventListener('click', playVideo)
 
@@ -313,6 +316,7 @@ const timeProgressVideoControl = () => {
     controlProgress.value = Math.floor(video.currentTime)
     let videoInputValue = (controlProgress.value - controlProgress.min) / (controlProgress.max - controlProgress.min) * 100
     controlProgress.style.background = `linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${videoInputValue}%, rgb(200, 200, 200) ${videoInputValue}%, rgb(200, 200, 200) 100%)`
+    videoTimeElapsed.innerHTML = Math.floor(video.currentTime) < 10 ? `00:0${Math.floor(video.currentTime)}` : `00:${Math.floor(video.currentTime)}`
 }
 video.addEventListener('timeupdate', timeProgressVideoControl)
 
